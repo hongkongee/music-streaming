@@ -1,0 +1,16 @@
+table {
+  margin: 3vh auto;
+  tbody {
+    border: 1px solid purple;
+    tr.oneTrack {
+      td.imgContainer {
+        img {
+        }
+      }
+
+      td.textAreat {
+        width: 200px;
+      }
+    }
+  }
+}
