@@ -12,7 +12,7 @@ const Artist = ({ artist }) => {
 
       <div className={styles.textArea}>
         <h2>{artist.name}</h2>
-        <div>{artist.followers.total}</div>
+        <div>팔로워 {artist.followers.total}</div>
         <div>
           {artist.genres.map((genre) => (
             <span key={genre}>{genre + " "}</span>

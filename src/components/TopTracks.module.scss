@@ -1,15 +1,22 @@
-table {
+.trackList {
   margin: 3vh auto;
   tbody {
     border: 1px solid purple;
+    padding-top: 1rem;
     tr.oneTrack {
       td.imgContainer {
+        padding-top: 1rem;
         img {
         }
       }
 
-      td.textAreat {
-        width: 200px;
+      td.textArea {
+        width: 280px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
       }
     }
   }
