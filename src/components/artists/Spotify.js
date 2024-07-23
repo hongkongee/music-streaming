@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Artist from "./Artist";
 import TopTracks from "./TopTracks";
-import SearchBar from "./ui/SearchBar";
+import SearchBar from "../ui/SearchBar";
 
 const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 const clientSecret = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET;
@@ -11,6 +11,12 @@ const Spotify = () => {
   const [accessToken, setAccessToken] = useState("");
   const [artist, setArtist] = useState(null);
   const [artistTopTracks, setArtistTopTracks] = useState([]);
+  const [artistId, setAritstId] = useState(""); // 스포티파이 아티스트 아이디
+
+  // 검색한 가수의 id 받기
+  const getArtistId = (spotifyId) => {
+    setAritstId(spotifyId);
+  };
 
   // Access Token 발급 받기
   const getSpotifyToken = async () => {
@@ -38,7 +44,7 @@ const Spotify = () => {
 
   // 아티스트 찾기
   const fetchArtistData = async () => {
-    const artistId = "7IrDIIq3j04exsiF3Z7CPg"; // 빈지노
+    // const artistId = "7IrDIIq3j04exsiF3Z7CPg"; // 빈지노
     // https://open.spotify.com/artist/7IrDIIq3j04exsiF3Z7CPg?si=UxmbsWcfRa6alD6jE-HEMQ
     const url = `https://api.spotify.com/v1/artists/${artistId}`;
 
@@ -58,7 +64,7 @@ const Spotify = () => {
 
   // 아티스트 인기 트랙
   const fetchArtistTopTracks = async () => {
-    const artistId = "7IrDIIq3j04exsiF3Z7CPg"; // 빈지노
+    // const artistId = "7IrDIIq3j04exsiF3Z7CPg"; // 빈지노
     const url = `https://api.spotify.com/v1/artists/${artistId}/top-tracks`;
 
     try {
@@ -76,18 +82,19 @@ const Spotify = () => {
   };
 
   useEffect(() => {
-    // console.log("client id:", clientId);
+    console.log("client id:", clientId);
     getSpotifyToken();
   }, []);
 
   useEffect(() => {
+    if (!artistId) return;
     fetchArtistData();
     fetchArtistTopTracks();
-  }, []);
+  }, [artistId]);
 
   return (
     <div>
-      <SearchBar />
+      <SearchBar onArtist={getArtistId} />
       {artist && <Artist artist={artist} />}
       {artistTopTracks.length > 0 && <TopTracks topTracks={artistTopTracks} />}
     </div>

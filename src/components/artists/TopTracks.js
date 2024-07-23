@@ -31,8 +31,10 @@ const TopTracks = ({ topTracks }) => {
           style={{ cursor: "pointer" }}
         >
           <tr className={styles.oneTrack}>
-            <td className={styles.imgContainer}>
-              <img src={track.album.images[2].url} alt="앨범" />
+            <td>
+              <div className={styles.imgContainer}>
+                <img src={track.album.images[2].url} alt="앨범" />
+              </div>
             </td>
             <td className={styles.textArea}>
               <h2>{track.name}</h2>
