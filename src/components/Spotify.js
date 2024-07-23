@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Artist from "./Artist";
 import TopTracks from "./TopTracks";
+import SearchBar from "./ui/SearchBar";
 
 const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 const clientSecret = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET;
@@ -75,7 +76,7 @@ const Spotify = () => {
   };
 
   useEffect(() => {
-    console.log("client id:", clientId);
+    // console.log("client id:", clientId);
     getSpotifyToken();
   }, []);
 
@@ -86,6 +87,7 @@ const Spotify = () => {
 
   return (
     <div>
+      <SearchBar />
       {artist && <Artist artist={artist} />}
       {artistTopTracks.length > 0 && <TopTracks topTracks={artistTopTracks} />}
     </div>

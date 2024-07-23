@@ -23,7 +23,7 @@ const TopTracks = ({ topTracks }) => {
     window.location.href = link;
   };
   return (
-    <table>
+    <table className={styles.trackList}>
       {topTracks.map((track) => (
         <tbody
           key={track.id}
