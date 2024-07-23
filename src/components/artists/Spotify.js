@@ -93,7 +93,7 @@ const Spotify = () => {
   }, [artistId]);
 
   return (
-    <div>
+    <div style={{ margin: "14vh" }}>
       <SearchBar onArtist={getArtistId} />
       {artist && <Artist artist={artist} />}
       {artistTopTracks.length > 0 && <TopTracks topTracks={artistTopTracks} />}
