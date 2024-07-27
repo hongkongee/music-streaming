@@ -4,7 +4,7 @@ import styles from "./Header.module.scss";
 import useNavigation from "../../router/useNavigation";
 
 const Header = () => {
-  const { goRank, goArtist, goSearch } = useNavigation();
+  const { goRank, goArtist, goSearch, goRecommend, goLogin } = useNavigation();
 
   // 스크롤시 헤더 색상 변경
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -33,6 +33,14 @@ const Header = () => {
           <div>|</div>
           <div className={styles.items} onClick={goSearch}>
             검색
+          </div>
+          <div>|</div>
+          <div className={styles.items} onClick={goRecommend}>
+            추천
+          </div>
+          <div>|</div>
+          <div className={styles.items} onClick={goLogin}>
+            로그인
           </div>
         </div>
       </div>

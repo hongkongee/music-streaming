@@ -11,6 +11,8 @@ const useNavigation = () => {
     goRank: goPage("/"),
     goArtist: goPage("/artist"),
     goSearch: goPage("/search"),
+    goRecommend: goPage("/recommend"),
+    goLogin: goPage("/login"),
   };
 };
 

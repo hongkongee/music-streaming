@@ -3,6 +3,8 @@ import Main from "../Main";
 import MainPage from "../components/MainPage";
 import Spotify from "../components/artists/Spotify";
 import SearchTemplate from "../components/search/SearchTemplate";
+import Recommend from "../components/recommend/Recommend";
+import Login from "../components/user/Login";
 
 const root = createBrowserRouter([
   {
@@ -20,6 +22,14 @@ const root = createBrowserRouter([
       {
         path: "/search",
         element: <SearchTemplate />,
+      },
+      {
+        path: "/recommend",
+        element: <Recommend />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
       },
     ],
   },
