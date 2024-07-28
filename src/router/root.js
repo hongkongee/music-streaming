@@ -5,6 +5,7 @@ import Spotify from "../components/artists/Spotify";
 import SearchTemplate from "../components/search/SearchTemplate";
 import Recommend from "../components/recommend/Recommend";
 import Login from "../components/user/Login";
+import SpotifyLoginHandler from "../components/user/SpotifyLoginHandler";
 
 const root = createBrowserRouter([
   {
@@ -13,7 +14,7 @@ const root = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <MainPage />,
+        element: <SpotifyLoginHandler />,
       },
       {
         path: "/artist",
@@ -30,6 +31,10 @@ const root = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/oauth/spotify",
+        element: <SpotifyLoginHandler />,
       },
     ],
   },

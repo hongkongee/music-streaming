@@ -1,20 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./Login.module.scss";
 import Button from "@mui/material/Button";
-const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
+import axios from "axios";
+const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
+// const REDIRECT_URI = process.env.REACT_APP_SPOTIFY_REDIRECT_URI; // http://localhost:3000/oauth/spotify
+const REDIRECT_URI = "http://localhost:3000";
+const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
+const RESPONSE_TYPE = "code";
+const SCOPE = "user-read-private user-read-email"; // 필요한 범위 설정
 
 const Login = () => {
-  const fetchData = async () => {
-    try {
-      const response = await axios.get("http://localhost:5000/login");
-      console.log("from server, response:", response.data); // 서버에서 받은 응답 데이터
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-
+  // Spotify의 권한 페이지로 redirection
+  useEffect(() => {
+    console.log("redirect uri:", REDIRECT_URI);
+  }, []);
   const onLoginSpotify = () => {
-    fetchData();
+    const authUrl = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}`;
+    window.location = authUrl;
   };
   return (
     <div className={styles.container}>

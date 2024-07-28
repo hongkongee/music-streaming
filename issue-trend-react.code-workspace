@@ -1,0 +1,13 @@
+{
+  "folders": [
+	{
+		"path": "../issue-trend-react"
+	},
+	{
+		"path": "."
+	},
+	{
+		"path": "../spotify-server"
+	}
+]
+}
