@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Header.module.scss";
 import useNavigation from "../../router/useNavigation";
+import UserInfo from "./UserInfo";
 
 const Header = () => {
   const { goRank, goArtist, goSearch, goRecommend, goLogin } = useNavigation();
@@ -43,6 +44,8 @@ const Header = () => {
             로그인
           </div>
         </div>
+
+        <UserInfo />
       </div>
     </header>
   );

@@ -5,8 +5,8 @@ const AuthContext = React.createContext({
   userNo: "",
   userEmail: "",
   profileImage: "",
-  nickname: "",
-  favoriteKeywords: [],
+  name: "",
+  country: "",
   onLogout: () => {},
   onLogin: () => {},
 });
@@ -21,32 +21,42 @@ export const AuthContextProvider = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userEmail, setUserEmail] = useState("");
   const [profileImage, setProfileImage] = useState("");
-  const [nickname, setNickname] = useState("");
-  const [userNo, setUserNo] = useState("");
-  const [favoriteKeywords, setFavoriteKeywords] = useState([]);
+  const [name, setName] = useState("");
+  const [country, setCountry] = useState("");
 
   // token, email, loginPath, profileImage, regionName
-  const loginHandler = (token) => {
-    localStorage.setItem("ACCESS_TOKEN", token);
+  const loginHandler = (token, userData) => {
+    if (userData === undefined) {
+      localStorage.setItem("ACCESS_TOKEN", token);
+    } else {
+      localStorage.setItem("NAME", userData.display_name);
+      localStorage.setItem("EMAIL", userData.email);
+      localStorage.setItem("PROFILE_IMAGE", userData.images[0]);
+      localStorage.setItem("COUNTRY", userData.country);
+
+      setUserEmail(userEmail);
+      setProfileImage(userData.images[0]);
+      setName(userData.display_name);
+      setCountry(userData.country);
+    }
+    setIsLoggedIn(true);
   };
+
   const logoutHandler = () => {
     localStorage.clear();
     setIsLoggedIn(false);
     setUserEmail("");
     setProfileImage("");
-    setNickname("");
-    setUserNo("");
-    setFavoriteKeywords([]);
+    setName("");
   };
 
   useEffect(() => {
-    if (localStorage.getItem("ACCESS_TOKEN")) {
+    if (localStorage.getItem("NAME")) {
       setIsLoggedIn(true);
       setUserEmail(localStorage.getItem("LOGIN_EMAIL"));
       setProfileImage(localStorage.getItem("PROFILE_IMAGE"));
-      setNickname(localStorage.getItem("NICK_NAME"));
-      setUserNo(localStorage.getItem("USER_NO"));
-      setFavoriteKeywords(localStorage.getItem("FAVORITE_KEYWORDS"));
+      setName(localStorage.getItem("NAME"));
+      setCountry(localStorage.getItem("COUNTRY"));
     }
   });
 
@@ -56,9 +66,8 @@ export const AuthContextProvider = (props) => {
         isLoggedIn,
         userEmail,
         profileImage,
-        nickname,
-        userNo,
-        favoriteKeywords,
+        name,
+        country,
         onLogout: logoutHandler,
         onLogin: loginHandler,
       }}

@@ -73,6 +73,8 @@ const SpotifyLoginHandler = () => {
       });
 
       console.log("User Data:", response.data);
+      const userData = response.data;
+      onLogin(token, userData);
     } catch (error) {
       console.error("Error fetching user data:", error);
     }
