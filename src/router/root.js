@@ -14,7 +14,7 @@ const root = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <SpotifyLoginHandler />,
+        element: <MainPage />,
       },
       {
         path: "/artist",

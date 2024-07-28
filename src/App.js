@@ -7,6 +7,7 @@ import { Route, RouterProvider, Routes } from "react-router-dom";
 import Header from "./components/layout/Header";
 import SearchTemplate from "./components/search/SearchTemplate";
 import root from "./router/root";
+import { AuthContextProvider } from "./config/AuthContext";
 
 const GlobalStyle = createGlobalStyle`
  ${reset}
@@ -14,10 +15,12 @@ const GlobalStyle = createGlobalStyle`
 
 function App() {
   return (
-    <div className="App">
-      <GlobalStyle />
-      <RouterProvider router={root} />
-    </div>
+    <AuthContextProvider>
+      <div className="App">
+        <GlobalStyle />
+        <RouterProvider router={root} />
+      </div>
+    </AuthContextProvider>
   );
 }
 

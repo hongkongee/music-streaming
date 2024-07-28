@@ -3,8 +3,8 @@ import styles from "./Login.module.scss";
 import Button from "@mui/material/Button";
 import axios from "axios";
 const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
-// const REDIRECT_URI = process.env.REACT_APP_SPOTIFY_REDIRECT_URI; // http://localhost:3000/oauth/spotify
-const REDIRECT_URI = "http://localhost:3000";
+const REDIRECT_URI = process.env.REACT_APP_SPOTIFY_REDIRECT_URI; // http://localhost:3000/oauth/spotify
+// const REDIRECT_URI = "http://localhost:3000/oauth/spotify";
 const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
 const RESPONSE_TYPE = "code";
 const SCOPE = "user-read-private user-read-email"; // 필요한 범위 설정
